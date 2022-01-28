@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Kakeibo } from './components/Kakeibo';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <Router>
-    <Kakeibo />
-  </Router>,
+  <React.StrictMode>
+    <BrowserRouter> 
+      <Kakeibo />
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
