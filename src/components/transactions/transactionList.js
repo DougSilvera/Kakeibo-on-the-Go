@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import { humanDate } from "../Settings";
-import AddTransaction from "./AddTransaction"
+import AddTransaction from "./AddTransaction";
 import "./transactions.css";
 
 
@@ -11,15 +11,21 @@ export default () => {
     
 useEffect(() => {
     TransactionRepository.getUserTransactions()
+    .then((data) =>
+    data.sort(function(x, y){
+        return y.timestamp - x.timestamp;
+    }))
     .then((data) => {
         setTransactions(data)
     })
 }, [])
-    return (
-        <>
+   
+return (
+        <div className="transactions">
         <AddTransaction />
         <h2 className="transaction_header">Transactions</h2>
-        <ul className="transaction_list">
+        <div className="transaction_list">
+        <ul >
             {
                 transactions.map((transactionObject) => {
                     return <li className="transaction_entry" key={transactionObject.id} id={transactionObject.id}>Date: {humanDate(transactionObject)} Description:{transactionObject.description}
@@ -28,7 +34,10 @@ useEffect(() => {
             }
         </ul>
 
-        </>
+
+        </div>
+
+        </div>
 
     )
     

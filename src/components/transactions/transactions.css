@@ -1,8 +1,5 @@
-.transaction_header, .transaction_list {
+.transaction_header, .add_transaction, .transaction_list {
     display: flex;
     justify-content: center;
 }
-.add_transaction {
-    display: flex;
-    justify-content: center;
-}
+ 
