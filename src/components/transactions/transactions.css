@@ -1,5 +1,7 @@
-.transaction_header, .add_transaction, .transaction_list {
+.transaction_header, .add_transaction, .transaction_list, .add_transaction_fields {
     display: flex;
     justify-content: center;
 }
- 
+.add_transaction_fields, .transaction_entry {
+    border: 1rem, solid, black;
+}

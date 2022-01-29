@@ -22,7 +22,7 @@ useEffect(() => {
    
 return (
         <div className="transactions">
-        <AddTransaction />
+        <AddTransaction setTransactions = {setTransactions} transactions={transactions}/>
         <h2 className="transaction_header">Transactions</h2>
         <div className="transaction_list">
         <ul >
