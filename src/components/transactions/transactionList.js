@@ -27,7 +27,6 @@ export default () => {
     <div className="transactions">
       <AddTransaction
         setTransactions={setTransactions}
-        transactions={transactions}
       />
       <h2 className="transaction_header">Transactions</h2>
       <div className="user_transactions">

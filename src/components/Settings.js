@@ -41,23 +41,8 @@ export const toTimestamp = (date) => {
     const newTimestamp = new Date(myDate).getTime()
     return newTimestamp
 }
-export const getFormattedDate = (date) => {
 
-    const year  = date.getFullYear(),
-          month = ('0' + (date.getMonth() + 1)).slice(-2),
-          day   = date.getDate()
-  
-    return [year, month, day].join('-')
-  }
-
- export const timeConverter =(UNIX_timestamp)=>{
-    var a = new Date(UNIX_timestamp * 1000);
-    var year = a.getFullYear();
-    var month =  ("0" + (a.getMonth() + 1)).slice(-2);
-    var date = ("0" + a.getDate()).slice(-2);
-    var time = year + "-" + month + "-" + date
-    return time;
-  }
+ 
 
   export const formattedDate = (timestamp) => {
     var date_not_formatted = new Date(timestamp);
