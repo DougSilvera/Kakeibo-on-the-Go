@@ -1,12 +1,116 @@
 import React from"react";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { toTimestamp, formattedDate} from "../Settings";
+import TransactionRepository from "../../repositories/TransactionRepository";
 
 
 export default () => {
    const {transactionId} =  useParams()
-    
+   const [transactionTypes, setTransactionTypes] = useState([]);
+   const [form, updateForm] = useState({})
+   const [transaction, setTransaction] = useState([])
+  
+
+
+
+   useEffect(() => {
+    TransactionRepository.getAllTypes().then((data) => {
+      setTransactionTypes(data);
+    })
+    .then(()=> {
+        TransactionRepository.getTransactionById(transactionId)
+        .then((data) => {
+            updateForm(data)
+        })
+    })
+  },[]);
+
+   
+   console.log(parseInt(form.typeId))
     return (
- 
-        <>edit the mother f'n transaction number {transactionId} here </>
+        <>
+      <div className="add_transaction">
+        <form name="add_transaction_form" className="add_transaction_form">
+          <fieldset className="add_transaction_fields">
+            <label id="label--login" htmlFor="date">
+              {" "}
+              Date{" "}
+            </label>
+            <input
+              type="date"
+              id="date"
+              className="form-control"
+              value={formattedDate(form.timestamp)}
+              onChange={(event) => {
+                const copy = { ...form };
+                copy.timestamp = toTimestamp(event.target.value);
+                updateForm(copy);
+              }}
+            />
+            <label htmlFor="description"> Description </label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              className="form-control"
+              value={form.description}
+              onChange={(event) => {
+                const copy = { ...form };
+                copy.description = event.target.value;
+                updateForm(copy);
+              }}
+            />
+            <label htmlFor="amount"> Amount </label>
+            <input
+              type="number"
+              id="amount"
+              prefix="$"
+              name="amount"
+              className="form-control"
+              value={form.amount}
+              onChange={(event) => {
+                const copy = { ...form };
+                copy.amount =parseFloat(event.target.value) ;
+                updateForm(copy);
+              }}
+            />
+            <label htmlFor="category"> Category </label>
+            <select
+              className="form-control"
+              id="typeId"
+              onChange={(event) => {
+                const copy = { ...form };
+                copy.typeId = parseInt(event.target.value);
+                updateForm(copy);
+              }}
+            >
+              <option value="" className="form-control">
+                Choose category
+              </option>
+              {transactionTypes.map((typeObject) => {
+                return (
+                  <option
+                    key={typeObject.id}
+                    id="categoryId"
+                    value={typeObject.id}
+                  >
+                    {typeObject.name}
+                  </option>
+                );
+              })}
+            </select>
+            <button
+              id="submit_transaction"
+              className="button"
+             
+            >
+              Submit Transaction
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </>
+        
     )
 }
