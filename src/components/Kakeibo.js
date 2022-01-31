@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import ApplicationViews from "./ApplicationViews";
-import { Login } from "./auth/login";
-import { Register } from "./auth/register";
-import { NavBar } from "./nav/navBar";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
+import { NavBar } from "./nav/NavBar";
 
 
 
