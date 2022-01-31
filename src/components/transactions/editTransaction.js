@@ -1,35 +1,56 @@
-import React from"react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { toTimestamp, formattedDate} from "../Settings";
+import { toTimestamp, formattedDate } from "../Settings";
 import TransactionRepository from "../../repositories/TransactionRepository";
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default () => {
-   const {transactionId} =  useParams()
-   const [transactionTypes, setTransactionTypes] = useState([]);
-   const [form, updateForm] = useState({})
-   const [transaction, setTransaction] = useState([])
-  
+  const { transactionId } = useParams();
+  const [transactionTypes, setTransactionTypes] = useState([]);
+  const [form, updateForm] = useState({});
+  const selectIndex = form.typeId;
+  const history = useHistory();
 
+  useEffect(() => {
+    TransactionRepository.getAllTypes()
+      .then((data) => {
+        setTransactionTypes(data);
+      })
+      .then(() => {
+        TransactionRepository.getTransactionById(transactionId).then((data) => {
+          updateForm(data);
+        });
+      });
+  }, []);
 
+  const updateTransaction = (evt) => {
+    if (
+      (document.getElementById("date").value === "",
+      form.description === "",
+      form.amount === NaN,
+      document.getElementById("typeId").value === "")
+    ) {
+      return window.alert("please complete all fields");
+    } else {
+      evt.preventDefault();
+      const updatedTransaction = {
+        userId: parseInt(localStorage.getItem("kakeibo-user")),
+        timestamp: form.timestamp,
+        description: form.description,
+        amount: form.amount,
+        typeId: form.typeId,
+        id: form.id,
+        isFixed: form.isFixed,
+      };
+      TransactionRepository.updateTransaction(updatedTransaction).then(() => {
+        history.push("/");
+      });
+    }
+  };
 
-   useEffect(() => {
-    TransactionRepository.getAllTypes().then((data) => {
-      setTransactionTypes(data);
-    })
-    .then(()=> {
-        TransactionRepository.getTransactionById(transactionId)
-        .then((data) => {
-            updateForm(data)
-        })
-    })
-  },[]);
-
-   
-   console.log(parseInt(form.typeId))
-    return (
-        <>
+  return (
+    <>
       <div className="add_transaction">
         <form name="add_transaction_form" className="add_transaction_form">
           <fieldset className="add_transaction_fields">
@@ -71,7 +92,7 @@ export default () => {
               value={form.amount}
               onChange={(event) => {
                 const copy = { ...form };
-                copy.amount =parseFloat(event.target.value) ;
+                copy.amount = parseFloat(event.target.value);
                 updateForm(copy);
               }}
             />
@@ -89,28 +110,38 @@ export default () => {
                 Choose category
               </option>
               {transactionTypes.map((typeObject) => {
-                return (
+                if (selectIndex === typeObject.id) {
+                  return (
+                    <option
+                      key={typeObject.id}
+                      id="categoryId"
+                      value={typeObject.id}
+                      selected="transaction type"
+                    >
+                      {typeObject.name}
+                    </option>
+                  );
+                } else {
                   <option
                     key={typeObject.id}
                     id="categoryId"
                     value={typeObject.id}
                   >
                     {typeObject.name}
-                  </option>
-                );
+                  </option>;
+                }
               })}
             </select>
             <button
               id="submit_transaction"
               className="button"
-             
+              onClick={updateTransaction}
             >
-              Submit Transaction
+              Update Transaction
             </button>
           </fieldset>
         </form>
       </div>
     </>
-        
-    )
-}
+  );
+};

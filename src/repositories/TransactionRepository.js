@@ -23,5 +23,8 @@ export default {
     },
     async deleteTransaction (id) {
         return await fetchIt(`${Settings.API}/transactions/${id}`, "DELETE")
+    },
+    async updateTransaction (updatedTransaction) {
+        return await fetchIt(`${Settings.API}/transactions/${updatedTransaction.id}`, "PUT", JSON.stringify(updatedTransaction))
     }
 }
