@@ -12,7 +12,9 @@ export default {
             return y.timestamp - x.timestamp;
         }))
     },
-
+    async getTransactionById (id) {
+        return await fetchIt(`${Settings.API}/transactions/${id}`)
+    },
     async getAllTypes () {
         return await fetchIt(`${Settings.API}/types`)
     },
