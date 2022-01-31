@@ -7,6 +7,10 @@ export default {
     async getUserTransactions() {
         const userId = parseInt(localStorage.getItem("kakeibo-user"))
         return await fetchIt(`${Settings.API}/transactions?userId=${userId}&_expand=type`)
+        .then((data) =>
+        data.sort(function(x, y){
+            return y.timestamp - x.timestamp;
+        }))
     },
 
     async getAllTypes () {
@@ -14,5 +18,8 @@ export default {
     },
     async postNewTransaction (newTransaction) {
         return await fetchIt(`${Settings.API}/transactions`, "POST", JSON.stringify(newTransaction))
+    },
+    async deleteTransaction (id) {
+        return await fetchIt(`${Settings.API}/transactions/${id}`, "DELETE")
     }
 }
