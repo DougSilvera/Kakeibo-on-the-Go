@@ -1,8 +1,8 @@
-.transaction_header, .add_transaction, .user_transactions, .add_transaction_fields {
+.transaction_header, .add_transaction, .user_transactions, .add_transaction_fields,.edit_transaction, .edit_transaction_fields {
     display: flex;
     justify-content: center;
 }
-.add_transaction_fields, .transaction_entry {
+.add_transaction_fields, .transaction_entry,.edit_transaction_fields {
     border: 1rem, solid, black;
     margin: 1rem
 }

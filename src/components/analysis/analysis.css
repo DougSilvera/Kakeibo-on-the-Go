@@ -1,0 +1,13 @@
+.analyze_transaction_list {
+    display: flex;
+    justify-content: left;
+        outline: 5px, solid, black;
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+        width: 45%;
+        overflow-y: scroll;
+        max-height: 30rem;
+    
+    
+}
