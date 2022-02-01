@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import "./analysis.css";
-import { humanDate, toTimestamp } from "../Settings";
+import { humanDate, toTimestamp, simpleArraySum } from "../Settings";
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
@@ -11,24 +11,6 @@ export default () => {
   const [startDate, setStartDate] = useState({});
   const [endDate, setEndDate] = useState({});
 
-  const selectTypeFilter = (selectedId) => {
-    let copy = [...typeFilters];
-    if (typeFilters.includes(selectedId)) {
-      copy = copy.filter((Id) => Id !== selectedId);
-      setTypeFilters(copy);
-    } else {
-      copy.push(selectedId);
-      setTypeFilters(copy);
-    }
-  };
-
-  function simpleArraySum(ar) {
-    var sum = 0;
-    for (var i = 0; i < ar.length; i++) {
-      sum += ar[i];
-    }
-    return sum.toFixed(2);
-  }
   useEffect(() => {
     TransactionRepository.getAllTypes().then((data) => {
       setTypes(data);
@@ -40,8 +22,17 @@ export default () => {
       setTransactions(data);
     });
   }, []);
-
-  const dateFilter = (startDateFilter, endDateFilter, event) => {
+  const selectTypeFilter = (selectedId) => {
+    let copy = [...typeFilters];
+    if (typeFilters.includes(selectedId)) {
+      copy = copy.filter((Id) => Id !== selectedId);
+      setTypeFilters(copy);
+    } else {
+      copy.push(selectedId);
+      setTypeFilters(copy);
+    }
+  };
+const dateFilter = (startDateFilter, endDateFilter, event) => {
     event.preventDefault();
     let copy = transactions.filter((transaction) => {
       return transaction.timestamp >= startDateFilter;
@@ -52,13 +43,6 @@ export default () => {
 
     setTransactions(copy2);
   };
-  // const categoryAmountArray = (typeId) => {
-  //   transactions.map((transaction) => {
-  //     if (transaction.typeId === typeId) {
-  //       return transaction.amount;
-  //     }
-  //   });
-  // };
   const runTypeFilter = (filterArray, event) => {
     event.preventDefault();
 
@@ -77,7 +61,7 @@ export default () => {
   const targetEndDate = (date) => {
     setEndDate(toTimestamp(date));
   };
-  
+
   return (
     <>
       <div className="analyze_user_transactions">
@@ -143,18 +127,21 @@ export default () => {
             })}
           </ul>
         </div>
-        <div className="category totals">Category totals go here</div>
-        {
-          types.map((type) => {
-           const typeTransactions = transactions.filter((transaction) =>
-           transaction.typeId === type.id);
-           const typeTotal = typeTransactions.map((typeTransaction) => typeTransaction.amount);
-            
-            return(
-              <div key={type.id}>category {type.name} total: ${simpleArraySum(typeTotal)}</div>
-            )
-             } )
-        }
+        <div className="category totals">Category totals</div>
+        {types.map((type) => {
+          const typeTransactions = transactions.filter(
+            (transaction) => transaction.typeId === type.id
+          );
+          const typeTotal = typeTransactions.map(
+            (typeTransaction) => typeTransaction.amount
+          );
+
+          return (
+            <div key={type.id}>
+              {type.name} total: ${simpleArraySum(typeTotal)}
+            </div>
+          );
+        })}
       </div>
       <Link to="/analyze/newJournal">
         <button>new journal</button>
