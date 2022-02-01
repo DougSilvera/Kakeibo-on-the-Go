@@ -64,6 +64,13 @@ export const humanDate = (object) => {
     return formatted_string
   }
 
+  export const simpleArraySum = (ar) => {
+    var sum = 0;
+    for (var i = 0; i < ar.length; i++) {
+      sum += ar[i];
+    }
+    return sum.toFixed(2);
+  }
 
 
 
