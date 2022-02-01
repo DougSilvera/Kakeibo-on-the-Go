@@ -10,6 +10,7 @@ export default () => {
   const [typeFilters, setTypeFilters] = useState([]);
   const [startDate, setStartDate] = useState({});
   const [endDate, setEndDate] = useState({});
+
   const selectTypeFilter = (selectedId) => {
     let copy = [...typeFilters];
     if (typeFilters.includes(selectedId)) {
@@ -20,6 +21,7 @@ export default () => {
       setTypeFilters(copy);
     }
   };
+
   function simpleArraySum(ar) {
     var sum = 0;
     for (var i = 0; i < ar.length; i++) {
@@ -50,17 +52,23 @@ export default () => {
 
     setTransactions(copy2);
   };
-const categoryAmountArray = (typeId) => {}
+  // const categoryAmountArray = (typeId) => {
+  //   transactions.map((transaction) => {
+  //     if (transaction.typeId === typeId) {
+  //       return transaction.amount;
+  //     }
+  //   });
+  // };
   const runTypeFilter = (filterArray, event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     let copy = filterArray.map((typeFilterId) => {
       return transactions.filter((transaction) => {
-        return transaction.typeId === typeFilterId
+        return transaction.typeId === typeFilterId;
       });
-    })
-    var merged = [].concat.apply([], copy)
-    setTransactions(merged)
+    });
+    var merged = [].concat.apply([], copy);
+    setTransactions(merged);
   };
 
   const targetStartDate = (date) => {
@@ -69,7 +77,7 @@ const categoryAmountArray = (typeId) => {}
   const targetEndDate = (date) => {
     setEndDate(toTimestamp(date));
   };
-
+  
   return (
     <>
       <div className="analyze_user_transactions">
@@ -136,6 +144,17 @@ const categoryAmountArray = (typeId) => {}
           </ul>
         </div>
         <div className="category totals">Category totals go here</div>
+        {
+          types.map((type) => {
+           const typeTransactions = transactions.filter((transaction) =>
+           transaction.typeId === type.id);
+           const typeTotal = typeTransactions.map((typeTransaction) => typeTransaction.amount);
+            
+            return(
+              <div key={type.id}>category {type.name} total: ${simpleArraySum(typeTotal)}</div>
+            )
+             } )
+        }
       </div>
       <Link to="/analyze/newJournal">
         <button>new journal</button>
