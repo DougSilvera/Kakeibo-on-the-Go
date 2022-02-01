@@ -22,18 +22,10 @@ export default () => {
           updateForm(data);
         });
       });
-  }, []);
+  }, [transactionId]);
 
   const updateTransaction = (evt) => {
-    if (
-      (document.getElementById("date").value === "",
-      form.description === "",
-      form.amount === NaN,
-      document.getElementById("typeId").value === "")
-    ) {
-      return window.alert("please complete all fields");
-    } else {
-      evt.preventDefault();
+    evt.preventDefault();
       const updatedTransaction = {
         userId: parseInt(localStorage.getItem("kakeibo-user")),
         timestamp: form.timestamp,
@@ -47,13 +39,13 @@ export default () => {
         history.push("/");
       });
     }
-  };
+  
 
   return (
     <>
-      <div className="add_transaction">
-        <form name="add_transaction_form" className="add_transaction_form">
-          <fieldset className="add_transaction_fields">
+      <div className="edit_transaction">
+        <form name="edit_transaction_form" className="edit_transaction_form">
+          <fieldset className="edit_transaction_fields">
             <label id="label--login" htmlFor="date">
               {" "}
               Date{" "}
@@ -122,13 +114,13 @@ export default () => {
                     </option>
                   );
                 } else {
-                  <option
+                  return (<option
                     key={typeObject.id}
                     id="categoryId"
                     value={typeObject.id}
                   >
                     {typeObject.name}
-                  </option>;
+                  </option>);
                 }
               })}
             </select>

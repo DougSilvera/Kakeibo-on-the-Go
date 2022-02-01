@@ -36,7 +36,8 @@ export const humanDate = (object) => {
     "en-us",
     format
   ))}
-export const toTimestamp = (date) => {
+
+  export const toTimestamp = (date) => {
     const myDate = date.split("-")
     const newTimestamp = new Date(myDate).getTime()
     return newTimestamp
