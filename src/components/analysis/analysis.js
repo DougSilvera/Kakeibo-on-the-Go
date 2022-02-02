@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import "./analysis.css";
 import { humanDate, toTimestamp, simpleArraySum } from "../Settings";
+import NewJournalForm from "./NewJournalForm";
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
@@ -10,6 +10,7 @@ export default () => {
   const [typeFilters, setTypeFilters] = useState([]);
   const [startDate, setStartDate] = useState({});
   const [endDate, setEndDate] = useState({});
+  const [filterReset, resetFilters] = useState({});
 
   useEffect(() => {
     TransactionRepository.getAllTypes().then((data) => {
@@ -21,7 +22,7 @@ export default () => {
     TransactionRepository.getUserTransactions().then((data) => {
       setTransactions(data);
     });
-  }, []);
+  }, [filterReset]);
   const selectTypeFilter = (selectedId) => {
     let copy = [...typeFilters];
     if (typeFilters.includes(selectedId)) {
@@ -108,6 +109,7 @@ const dateFilter = (startDateFilter, endDateFilter, event) => {
           >
             Filter Type
           </button>
+          <button onClick={() => {resetFilters(filterReset+1)}}>Reset Filters</button>
         </form>
         <div className="analyze_transaction_list">
           <ul>
@@ -143,9 +145,9 @@ const dateFilter = (startDateFilter, endDateFilter, event) => {
           );
         })}
       </div>
-      <Link to="/analyze/newJournal">
-        <button>new journal</button>
-      </Link>
+     <div>
+       <NewJournalForm transactions={transactions} startDate={startDate} endDate={endDate} />
+     </div>
     </>
   );
 };

@@ -11,17 +11,12 @@ export default () => {
             <Route exact path="/journalList">
                 <JournalList />
             </Route>
-            <Route path="/journalList/editJournal/">
+            <Route path="/journalList/editJournal/:journalId(\d+)">
                 <EditJournal />
             </Route>
-            <Route path="/journalList/journalDetail/">
+            <Route path="/journalList/journalDetail/:journalId(\d+)">
                 <JournalDetail />
             </Route>
         </>
     )
 }
-
-
-// /journalList/editJournal/:journalId(\d+)
-
-// /journalList/journalDetail/:journalId(\d+)
