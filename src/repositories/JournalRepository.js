@@ -30,5 +30,8 @@ export default {
     },
     async getJournalTransactionsbyId (journalId) {
         return await fetchIt(`${Settings.API}/journalTransactions?journalId=${journalId}&_expand=transaction&_expand=type`)
+    },
+    async updateJournal (updatedJournal) {
+        return await fetchIt(`${Settings.API}/journals/${updatedJournal.id}`, "PUT",JSON.stringify(updatedJournal))
     }
 }
