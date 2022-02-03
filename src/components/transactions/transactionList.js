@@ -39,7 +39,7 @@ export default () => {
                   key={transactionObject.id}
                   id={transactionObject.id}
                 >
-                  Date: {humanDate(transactionObject)} Description:{" "}
+                  Date: {humanDate(transactionObject)} {" "}
                   {transactionObject.description} Amount: $
                   {transactionObject.amount.toFixed(2)} Type:{" "}
                   {transactionObject.type.name}{" "}
