@@ -26,20 +26,19 @@ export default () => {
 
   const updateTransaction = (evt) => {
     evt.preventDefault();
-      const updatedTransaction = {
-        userId: parseInt(localStorage.getItem("kakeibo-user")),
-        timestamp: form.timestamp,
-        description: form.description,
-        amount: form.amount,
-        typeId: form.typeId,
-        id: form.id,
-        isFixed: form.isFixed,
-      };
-      TransactionRepository.updateTransaction(updatedTransaction).then(() => {
-        history.push("/");
-      });
-    }
-  
+    const updatedTransaction = {
+      userId: parseInt(localStorage.getItem("kakeibo-user")),
+      timestamp: form.timestamp,
+      description: form.description,
+      amount: form.amount,
+      typeId: form.typeId,
+      id: form.id,
+      isFixed: form.isFixed,
+    };
+    TransactionRepository.updateTransaction(updatedTransaction).then(() => {
+      history.push("/");
+    });
+  };
 
   return (
     <>
@@ -114,13 +113,15 @@ export default () => {
                     </option>
                   );
                 } else {
-                  return (<option
-                    key={typeObject.id}
-                    id="categoryId"
-                    value={typeObject.id}
-                  >
-                    {typeObject.name}
-                  </option>);
+                  return (
+                    <option
+                      key={typeObject.id}
+                      id="categoryId"
+                      value={typeObject.id}
+                    >
+                      {typeObject.name}
+                    </option>
+                  );
                 }
               })}
             </select>

@@ -8,7 +8,7 @@ export default () => {
   const { journalId } = useParams();
   const [journal, setJournal] = useState({});
   const [journalTransactions, setJournalTransactions] = useState([]);
-  const [types, setTypes] = useState([])
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     JournalRepository.getJournalById(journalId).then((data) => {
@@ -23,11 +23,10 @@ export default () => {
   }, []);
 
   useEffect(() => {
-      TransactionRepository.getAllTypes()
-      .then((data) => {
-          setTypes(data)
-      })
-  }, [])
+    TransactionRepository.getAllTypes().then((data) => {
+      setTypes(data);
+    });
+  }, []);
 
   return (
     <>
@@ -44,25 +43,27 @@ export default () => {
         })}
       </ul>
       <div className="category totals">Category totals</div>
-        {types.map((type) => {
-          const typeTransactions = journalTransactions.filter(
-            (transaction) => transaction.typeId === type.id
-          );
-          const typeTotal = typeTransactions.map(
-            (typeTransaction) => typeTransaction.transaction.amount
-          );
+      {types.map((type) => {
+        const typeTransactions = journalTransactions.filter(
+          (transaction) => transaction.typeId === type.id
+        );
+        const typeTotal = typeTransactions.map(
+          (typeTransaction) => typeTransaction.transaction.amount
+        );
 
-          return (
-            <div key={type.id}>
-              {type.name} total: ${simpleArraySum(typeTotal)}
-            </div>
-          );
-        })}
+        return (
+          <div key={type.id}>
+            {type.name} total: ${simpleArraySum(typeTotal)}
+          </div>
+        );
+      })}
       <h3>Journal entry</h3>
       <div>how much money do you have: {journal.have}</div>
       <div>how much would you have liked to save: {journal.save}</div>
       <div>did you spend more or less than planned: {journal.spend}</div>
-      <div>What are you happy with? What can you improve?: {journal.reflection}</div>
+      <div>
+        What are you happy with? What can you improve?: {journal.reflection}
+      </div>
     </>
   );
 };
