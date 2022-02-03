@@ -3,7 +3,7 @@ import "./transactions.css";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import { toTimestamp } from "../Settings";
 
-export default ({ setTransactions }) => {
+export default ({ syncTransactions }) => {
   const [transactionTypes, setTransactionTypes] = useState([]);
   const [form, updateForm] = useState({});
 
@@ -32,10 +32,8 @@ export default ({ setTransactions }) => {
         isFixed: false,
       };
       TransactionRepository.postNewTransaction(newTransaction)
-        .then(() => {
-          TransactionRepository.getUserTransactions().then((data) => {
-            setTransactions(data);
-          });
+        .then((data) => {
+          syncTransactions(data)
         })
         .then(() => {
           document.getElementById("date").value = "";

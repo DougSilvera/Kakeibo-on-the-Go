@@ -8,24 +8,23 @@ import "./transactions.css";
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
+  const [renderTransactions, syncTransactions]=useState([])
 
   useEffect(() => {
     TransactionRepository.getUserTransactions().then((data) => {
       setTransactions(data);
     });
-  }, []);
+  }, [renderTransactions]);
 
   const killTransaction = (id) => {
-    TransactionRepository.deleteTransaction(id).then(() => {
-      TransactionRepository.getUserTransactions().then((data) => {
-        setTransactions(data);
-      });
+    TransactionRepository.deleteTransaction(id).then((data) => {
+     syncTransactions(data)
     });
   };
 
   return (
     <div className="transactions">
-      <AddTransaction setTransactions={setTransactions} />
+      <AddTransaction setTransactions={setTransactions} syncTransactions={syncTransactions} />
       <h2 className="transaction_header">Transactions</h2>
       <div className="user_transactions">
         <div className="transaction_list">
