@@ -24,7 +24,7 @@ export default () => {
 
   return (
     <div className="transactions">
-      <AddTransaction setTransactions={setTransactions} syncTransactions={syncTransactions} />
+      <AddTransaction syncTransactions={syncTransactions} />
       <h2 className="transaction_header">Transactions</h2>
       <div className="user_transactions">
         <div className="transaction_list">
