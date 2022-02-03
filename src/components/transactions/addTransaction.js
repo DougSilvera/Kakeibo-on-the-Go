@@ -3,16 +3,10 @@ import "./transactions.css";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import { toTimestamp } from "../Settings";
 
-
-
-
-
-
-
 export default ({ setTransactions }) => {
   const [transactionTypes, setTransactionTypes] = useState([]);
   const [form, updateForm] = useState({});
- 
+
   useEffect(() => {
     TransactionRepository.getAllTypes().then((data) => {
       setTransactionTypes(data);
@@ -38,22 +32,18 @@ export default ({ setTransactions }) => {
         isFixed: false,
       };
       TransactionRepository.postNewTransaction(newTransaction)
-       .then(() => {
-        TransactionRepository.getUserTransactions()
-        .then((data) => {
-            setTransactions(data)
+        .then(() => {
+          TransactionRepository.getUserTransactions().then((data) => {
+            setTransactions(data);
+          });
         })
-       })
-       .then(() => {
-         document.getElementById("date").value= ""
-         document.getElementById("description").value= ""
-         document.getElementById("amount").value= ""
-         document.getElementById("typeId").selectedIndex= ""
-       })
-        
-      }
-      
-      
+        .then(() => {
+          document.getElementById("date").value = "";
+          document.getElementById("description").value = "";
+          document.getElementById("amount").value = "";
+          document.getElementById("typeId").selectedIndex = "";
+        });
+    }
   };
 
   return (
@@ -99,7 +89,7 @@ export default ({ setTransactions }) => {
               placeholder="Amount"
               onChange={(event) => {
                 const copy = { ...form };
-                copy.amount =parseFloat(event.target.value) ;
+                copy.amount = parseFloat(event.target.value);
                 updateForm(copy);
               }}
             />

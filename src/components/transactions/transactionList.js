@@ -25,9 +25,7 @@ export default () => {
 
   return (
     <div className="transactions">
-      <AddTransaction
-        setTransactions={setTransactions}
-      />
+      <AddTransaction setTransactions={setTransactions} />
       <h2 className="transaction_header">Transactions</h2>
       <div className="user_transactions">
         <div className="transaction_list">
@@ -39,7 +37,7 @@ export default () => {
                   key={transactionObject.id}
                   id={transactionObject.id}
                 >
-                  Date: {humanDate(transactionObject)} {" "}
+                  Date: {humanDate(transactionObject)}{" "}
                   {transactionObject.description} Amount: $
                   {transactionObject.amount.toFixed(2)} Type:{" "}
                   {transactionObject.type.name}{" "}

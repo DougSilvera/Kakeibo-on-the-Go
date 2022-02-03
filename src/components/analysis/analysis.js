@@ -33,7 +33,7 @@ export default () => {
       setTypeFilters(copy);
     }
   };
-const dateFilter = (startDateFilter, endDateFilter, event) => {
+  const dateFilter = (startDateFilter, endDateFilter, event) => {
     event.preventDefault();
     let copy = transactions.filter((transaction) => {
       return transaction.timestamp >= startDateFilter;
@@ -109,7 +109,13 @@ const dateFilter = (startDateFilter, endDateFilter, event) => {
           >
             Filter Type
           </button>
-          <button onClick={() => {resetFilters(filterReset+1)}}>Reset Filters</button>
+          <button
+            onClick={() => {
+              resetFilters(filterReset + 1);
+            }}
+          >
+            Reset Filters
+          </button>
         </form>
         <div className="analyze_transaction_list">
           <ul>
@@ -145,9 +151,13 @@ const dateFilter = (startDateFilter, endDateFilter, event) => {
           );
         })}
       </div>
-     <div>
-       <NewJournalForm transactions={transactions} startDate={startDate} endDate={endDate} />
-     </div>
+      <div>
+        <NewJournalForm
+          transactions={transactions}
+          startDate={startDate}
+          endDate={endDate}
+        />
+      </div>
     </>
   );
 };

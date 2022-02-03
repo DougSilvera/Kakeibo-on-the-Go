@@ -5,8 +5,7 @@ import { formattedDate } from "../Settings";
 
 export default () => {
   const [journals, setJournals] = useState([]);
-  const [reset, syncList] = useState([])
-  
+  const [reset, syncList] = useState([]);
 
   useEffect(() => {
     JournalRepository.getUserJournals().then((data) => {
@@ -14,12 +13,11 @@ export default () => {
     });
   }, [reset]);
   const killJournal = (id) => {
-      JournalRepository.deleteJournal(id)
-      .then(() => {
-          syncList(reset + 1)
-      })
-  } 
-  
+    JournalRepository.deleteJournal(id).then(() => {
+      syncList(reset + 1);
+    });
+  };
+
   return (
     <>
       <div className="journals">
@@ -39,7 +37,7 @@ export default () => {
                 <button
                   id={journal.id}
                   onClick={(evt) => {
-                   killJournal(evt.target.id);
+                    killJournal(evt.target.id);
                   }}
                 >
                   Delete Journal
