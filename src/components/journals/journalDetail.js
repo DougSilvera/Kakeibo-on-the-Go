@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JournalRepository from "../../repositories/JournalRepository";
 import TransactionRepository from "../../repositories/TransactionRepository";
-import { humanDate, simpleArraySum } from "../Settings";
+import { formattedDate, humanDate, simpleArraySum } from "../Settings";
 
 export default () => {
   const { journalId } = useParams();
@@ -30,6 +30,7 @@ export default () => {
 
   return (
     <>
+    <h2>Journal for {formattedDate(journal.startDate)} through {formattedDate(journal.endDate)} </h2>
       <ul className="journal_transaction-table">
         {journalTransactions.map((journalTransaction) => {
           return (
