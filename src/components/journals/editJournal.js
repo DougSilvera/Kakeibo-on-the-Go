@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react/cjs/react.development";
 import JournalRepository from "../../repositories/JournalRepository";
 import TransactionRepository from "../../repositories/TransactionRepository";
-import { simpleArraySum, humanDate } from "../Settings";
+import { simpleArraySum, humanDate, formattedDate } from "../Settings";
 
 export default () => {
   const { journalId } = useParams();
@@ -49,6 +49,7 @@ export default () => {
 
   return (
     <>
+    <h2>Journal for {formattedDate(form.startDate)} through {formattedDate(form.endDate)} </h2>
       <ul className="journal_transaction-table">
         {journalTransactions.map((journalTransaction) => {
           return (
