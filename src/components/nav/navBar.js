@@ -1,36 +1,45 @@
 import React from "react";
 import "./navbar.css";
-import Link from '@mui/material/Link';
+import { Button } from "@mui/material";
 
 export const NavBar = () => {
   return (
-    <ul className="navbar">
-      <li className="navbar__item active">
-        <Link underline="hover" href="/" underclassName="navbar__link" >
-          Home
-        </Link>
-      </li>
-      <li className="navbar__item active">
-        <Link underline="hover" href="/analyze"className="navbar__link">
-          Analyze
-        </Link>
-      </li>
-      <li className="navbar__item active">
-        <Link underline="hover" href="/journalList" className="navbar__link">
-          Journals
-        </Link>
-      </li>
-      <li className="navbar__item active">
-        <Link underline="hover" href="#"
-          className="navbar__link"
-          
-          onClick={() => {
-            localStorage.removeItem("kakeibo-user");
-          }}
-        >
-          Logout
-        </Link>
-      </li>
-    </ul>
+    <div className="navbar">
+      <Button
+        variant="contained"
+        href="/"
+        color="success"
+        className="navbar__item active"
+      >
+        Home
+      </Button>
+      <Button
+        variant="contained"
+        color="success"
+        href="/analyze"
+        className="navbar__item active"
+      >
+        Analyze
+      </Button>
+      <Button
+        variant="contained"
+        color="success"
+        href="/journalList"
+        className="navbar__item active"
+      >
+        Journals
+      </Button>
+      <Button
+        variant="contained"
+        color="success"
+        href="#"
+        className="navbar__item active"
+        onClick={() => {
+          localStorage.removeItem("kakeibo-user");
+        }}
+      >
+        Logout
+      </Button>
+    </div>
   );
 };

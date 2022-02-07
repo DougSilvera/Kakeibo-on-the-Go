@@ -1,11 +1,16 @@
-.transaction_header, .add_transaction, .user_transactions, .add_transaction_fields,.edit_transaction, .edit_transaction_fields {
+.transaction_header, .add-transaction-header, .user_transactions,.edit_transaction, .edit_transaction_fields {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
-.add_transaction_fields, .transaction_entry,.edit_transaction_fields {
+.add_transaction_fields, .edit_transaction_fields {
     border: 1rem, solid, black;
-    margin: 1rem
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+ 
 }
+
 
 .transaction_list {
     display: flex;
@@ -19,4 +24,25 @@
         max-height: 30rem;
     
     
+}
+
+.transaction-form-control {
+   margin-left: 1rem;
+    margin-right: 1rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    
+}
+
+.add-transaction-container {
+    border: solid #388e3c;
+    margin-right: 8rem;
+    margin-left: 8rem;
 }
