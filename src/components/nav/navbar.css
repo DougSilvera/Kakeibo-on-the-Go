@@ -1,7 +1,10 @@
 .navbar {
     display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-evenly;
+    background-color: #A6C49A;
 }
 
 .navbar__item {
