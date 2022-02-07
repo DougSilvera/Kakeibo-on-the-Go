@@ -1,5 +1,7 @@
-.h1, h1 {
-    font-size: 2.5rem;
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+h2, .form--login{
+    font-family: 'Supermercado One', cursive;
+    color: #fff;
 }
 
 fieldset {
@@ -12,11 +14,13 @@ fieldset {
 .form--login {
     display: inline-block;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
+    justify-content: center;
 }
 
 .form--login > fieldset > input[type="email"] {
     width: 25em;
+    
 }
 
 .label--login {
@@ -25,7 +29,6 @@ fieldset {
 }
 
 .form-control {
-    display: block;
     width: 94%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
@@ -37,9 +40,9 @@ fieldset {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
 }
+   
 
 .container--login {
     text-align: center;
@@ -50,9 +53,7 @@ fieldset {
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
+  
 }
 
 .button--close {
@@ -63,4 +64,11 @@ fieldset {
 .dialog {
     min-width: 15rem;
     min-height: 5rem;
+}
+.logoMain {
+    height: 30rem;
+}
+
+ html {
+    background-color: #A6C49A;
 }

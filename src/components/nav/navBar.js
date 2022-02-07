@@ -1,29 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./navbar.css";
+import Link from '@mui/material/Link';
 
-export const NavBar = (props) => {
+export const NavBar = () => {
   return (
     <ul className="navbar">
       <li className="navbar__item active">
-        <Link className="navbar__link" to="">
+        <Link underline="hover" href="/" underclassName="navbar__link" >
           Home
         </Link>
       </li>
       <li className="navbar__item active">
-        <Link className="navbar__link" to="/analyze">
+        <Link underline="hover" href="/analyze"className="navbar__link">
           Analyze
         </Link>
       </li>
       <li className="navbar__item active">
-        <Link className="navbar__link" to="/journalList">
+        <Link underline="hover" href="/journalList" className="navbar__link">
           Journals
         </Link>
       </li>
       <li className="navbar__item active">
-        <Link
+        <Link underline="hover" href="#"
           className="navbar__link"
-          to="#"
+          
           onClick={() => {
             localStorage.removeItem("kakeibo-user");
           }}

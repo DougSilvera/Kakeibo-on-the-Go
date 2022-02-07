@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./login.css";
@@ -60,7 +61,7 @@ export const Register = (props) => {
           Register your Kakeibo on the Go user account!
         </h1>
         <fieldset>
-          <label htmlFor="name"> Full Name </label>
+          
           <input
             onChange={updateUser}
             type="text"
@@ -72,7 +73,7 @@ export const Register = (props) => {
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="email"> Email address </label>
+          
           <input
             onChange={updateUser}
             type="email"
@@ -83,7 +84,7 @@ export const Register = (props) => {
           />
         </fieldset>
         <fieldset>
-          <button type="submit"> Register </button>
+          <Button color="success" variant="contained" type="submit"> Register </Button>
         </fieldset>
       </form>
     </main>

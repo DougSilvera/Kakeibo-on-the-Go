@@ -4,6 +4,7 @@ import ApplicationViews from "./ApplicationViews";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import { NavBar } from "./nav/NavBar";
+import headerImage from "./KakeiboHeaderImage.png"
 
 export const Kakeibo = () => (
   <>
@@ -12,7 +13,7 @@ export const Kakeibo = () => (
         if (localStorage.getItem("kakeibo-user")) {
           return (
             <>
-              <h1 className="header_main">Kakeibo on the Go</h1>
+              <h1 className="header_main"><img src={headerImage}/></h1>
               <NavBar />
               <ApplicationViews />
             </>

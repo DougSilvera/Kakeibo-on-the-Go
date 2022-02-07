@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "./login.css";
+import logo from "./Kakeibo on the Go.png"
+import { Button,r } from "@mui/material";
 
 export const Login = () => {
   const [email, set] = useState("");
@@ -40,10 +42,10 @@ export const Login = () => {
 
       <section>
         <form className="form--login" onSubmit={handleLogin}>
-          <h1>Kakeibo on the Go</h1>
+          <h1><img src={logo} className="logoMain" alt="logo"/></h1>
           <h2>Please sign in</h2>
-          <fieldset>
-            <label htmlFor="inputEmail"> Email address </label>
+          <fieldset className="loginEmail">
+           
             <input
               type="email"
               onChange={(evt) => set(evt.target.value)}
@@ -54,7 +56,11 @@ export const Login = () => {
             />
           </fieldset>
           <fieldset>
-            <button type="submit">Sign in</button>
+           
+
+            <Button variant="contained" color="success" type="submit">Sign in</Button>
+
+           
           </fieldset>
         </form>
       </section>
