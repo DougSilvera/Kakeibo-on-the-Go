@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./transactions.css";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import { toTimestamp } from "../Settings";
+import { Button } from "@mui/material";
 
 export default ({ syncTransactions }) => {
   const [transactionTypes, setTransactionTypes] = useState([]);
@@ -45,18 +46,16 @@ export default ({ syncTransactions }) => {
   };
 
   return (
-    <>
+    <div className="add-transaction-container">
+        <h2 className="add-transaction-header">Add a New Transaction</h2>
       <div className="add_transaction">
         <form name="add_transaction_form" className="add_transaction_form">
           <fieldset className="add_transaction_fields">
-            <label id="label--login" htmlFor="date">
-              {" "}
-              Date{" "}
-            </label>
+            
             <input
               type="date"
               id="date"
-              className="form-control"
+              className="transaction-form-control"
               placeholder="Select Date"
               onChange={(event) => {
                 const copy = { ...form };
@@ -64,12 +63,12 @@ export default ({ syncTransactions }) => {
                 updateForm(copy);
               }}
             />
-            <label htmlFor="description"> Description </label>
+           
             <input
               type="text"
               id="description"
               name="description"
-              className="form-control"
+              className="transaction-form-control"
               placeholder="Description"
               onChange={(event) => {
                 const copy = { ...form };
@@ -77,13 +76,13 @@ export default ({ syncTransactions }) => {
                 updateForm(copy);
               }}
             />
-            <label htmlFor="amount"> Amount </label>
+           
             <input
               type="number"
               id="amount"
               prefix="$"
               name="amount"
-              className="form-control"
+              className="transaction-form-control"
               placeholder="Amount"
               onChange={(event) => {
                 const copy = { ...form };
@@ -91,9 +90,9 @@ export default ({ syncTransactions }) => {
                 updateForm(copy);
               }}
             />
-            <label htmlFor="category"> Category </label>
+           
             <select
-              className="form-control"
+              className="transaction-form-control"
               id="typeId"
               onChange={(event) => {
                 const copy = { ...form };
@@ -101,7 +100,7 @@ export default ({ syncTransactions }) => {
                 updateForm(copy);
               }}
             >
-              <option value="" className="form-control">
+              <option value="" className="transaction-form-control">
                 Choose category
               </option>
               {transactionTypes.map((typeObject) => {
@@ -116,16 +115,16 @@ export default ({ syncTransactions }) => {
                 );
               })}
             </select>
-            <button
+            <Button variant="contained" color="success"
               id="submit_transaction"
               className="button"
               onClick={submitNewTransaction}
             >
               Submit Transaction
-            </button>
+            </Button>
           </fieldset>
         </form>
       </div>
-    </>
+    </div>
   );
 };
