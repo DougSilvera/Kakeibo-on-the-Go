@@ -34,6 +34,14 @@ export const humanDate = (object) => {
   };
   return new Date(object.timestamp).toLocaleString("en-us", format);
 };
+export const humanDate2 = (timestamp) => {
+  const format = {
+    day: "numeric",
+    month: "2-digit",
+    year: "numeric",
+  };
+  return new Date(timestamp).toLocaleString("en-us", format);
+};
 
 export const toTimestamp = (date) => {
   const myDate = date.split("-");
