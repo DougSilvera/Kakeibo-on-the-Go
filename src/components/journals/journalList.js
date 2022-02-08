@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import JournalRepository from "../../repositories/JournalRepository";
-import { formattedDate, humanDate2 } from "../Settings";
+import {  humanDate2 } from "../Settings";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
