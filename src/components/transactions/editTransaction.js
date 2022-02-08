@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toTimestamp, formattedDate } from "../Settings";
 import TransactionRepository from "../../repositories/TransactionRepository";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "@mui/material";
 
 export default () => {
   const { transactionId } = useParams();
@@ -41,45 +42,43 @@ export default () => {
   };
 
   return (
-    <>
-      <div className="edit_transaction">
-        <form name="edit_transaction_form" className="edit_transaction_form">
-          <fieldset className="edit_transaction_fields">
-            <label id="label--login" htmlFor="date">
-              {" "}
-              Date{" "}
-            </label>
+    <div className="add-transaction-container">
+        <h2 className="add-transaction-header">Edit Transaction</h2>
+      <div className="add_transaction">
+        <form name="add_transaction_form" className="add_transaction_form">
+          <fieldset className="add_transaction_fields">
+            
             <input
               type="date"
               id="date"
-              className="form-control"
+              className="transaction-form-control"
               value={formattedDate(form.timestamp)}
-              onChange={(event) => {
-                const copy = { ...form };
-                copy.timestamp = toTimestamp(event.target.value);
-                updateForm(copy);
-              }}
+                onChange={(event) => {
+                  const copy = { ...form };
+                  copy.timestamp = toTimestamp(event.target.value);
+                  updateForm(copy);
+                }}
             />
-            <label htmlFor="description"> Description </label>
+           
             <input
               type="text"
               id="description"
               name="description"
-              className="form-control"
+              className="transaction-form-control"
               value={form.description}
-              onChange={(event) => {
-                const copy = { ...form };
-                copy.description = event.target.value;
-                updateForm(copy);
-              }}
+                onChange={(event) => {
+                  const copy = { ...form };
+                  copy.description = event.target.value;
+                  updateForm(copy);
+                }}
             />
-            <label htmlFor="amount"> Amount </label>
+           
             <input
               type="number"
               id="amount"
               prefix="$"
               name="amount"
-              className="form-control"
+              className="transaction-form-control"
               value={form.amount}
               onChange={(event) => {
                 const copy = { ...form };
@@ -87,54 +86,155 @@ export default () => {
                 updateForm(copy);
               }}
             />
-            <label htmlFor="category"> Category </label>
-            <select
-              className="form-control"
-              id="typeId"
-              onChange={(event) => {
-                const copy = { ...form };
-                copy.typeId = parseInt(event.target.value);
-                updateForm(copy);
-              }}
-            >
-              <option value="" className="form-control">
-                Choose category
-              </option>
-              {transactionTypes.map((typeObject) => {
-                if (selectIndex === typeObject.id) {
-                  return (
-                    <option
-                      key={typeObject.id}
-                      id="categoryId"
-                      value={typeObject.id}
-                      selected="transaction type"
-                    >
-                      {typeObject.name}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option
-                      key={typeObject.id}
-                      id="categoryId"
-                      value={typeObject.id}
-                    >
-                      {typeObject.name}
-                    </option>
-                  );
-                }
-              })}
-            </select>
-            <button
+           
+           <select
+                className="transaction-form-control"
+                id="typeId"
+                onChange={(event) => {
+                  const copy = { ...form };
+                  copy.typeId = parseInt(event.target.value);
+                  updateForm(copy);
+                }}
+              >
+                <option value="" className="transaction-form-control">
+                  Choose category
+                </option>
+                {transactionTypes.map((typeObject) => {
+                  if (selectIndex === typeObject.id) {
+                    return (
+                      <option
+                        key={typeObject.id}
+                        id="categoryId"
+                        value={typeObject.id}
+                        selected="transaction type"
+                      >
+                        {typeObject.name}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option
+                        key={typeObject.id}
+                        id="categoryId"
+                        value={typeObject.id}
+                      >
+                        {typeObject.name}
+                      </option>
+                    );
+                  }
+                })}
+              </select>
+            <Button variant="contained" color="success"
               id="submit_transaction"
               className="button"
               onClick={updateTransaction}
             >
               Update Transaction
-            </button>
+            </Button>
           </fieldset>
         </form>
       </div>
-    </>
+    </div>
   );
+
 };
+
+
+
+// return (
+//   <>
+//     <div className="edit_transaction">
+//       <form name="edit_transaction_form" className="edit_transaction_form">
+//         <fieldset className="edit_transaction_fields">
+//           <label id="label--login" htmlFor="date">
+//             {" "}
+//             Date{" "}
+//           </label>
+//           <input
+//             type="date"
+//             id="date"
+//             className="form-control"
+//             value={formattedDate(form.timestamp)}
+//             onChange={(event) => {
+//               const copy = { ...form };
+//               copy.timestamp = toTimestamp(event.target.value);
+//               updateForm(copy);
+//             }}
+//           />
+//           <label htmlFor="description"> Description </label>
+//           <input
+//             type="text"
+//             id="description"
+//             name="description"
+//             className="form-control"
+//             value={form.description}
+//             onChange={(event) => {
+//               const copy = { ...form };
+//               copy.description = event.target.value;
+//               updateForm(copy);
+//             }}
+//           />
+//           <label htmlFor="amount"> Amount </label>
+//           <input
+//             type="number"
+//             id="amount"
+//             prefix="$"
+//             name="amount"
+//             className="form-control"
+//             value={form.amount}
+//             onChange={(event) => {
+//               const copy = { ...form };
+//               copy.amount = parseFloat(event.target.value);
+//               updateForm(copy);
+//             }}
+//           />
+//           <label htmlFor="category"> Category </label>
+//           <select
+//             className="form-control"
+//             id="typeId"
+//             onChange={(event) => {
+//               const copy = { ...form };
+//               copy.typeId = parseInt(event.target.value);
+//               updateForm(copy);
+//             }}
+//           >
+//             <option value="" className="form-control">
+//               Choose category
+//             </option>
+//             {transactionTypes.map((typeObject) => {
+//               if (selectIndex === typeObject.id) {
+//                 return (
+//                   <option
+//                     key={typeObject.id}
+//                     id="categoryId"
+//                     value={typeObject.id}
+//                     selected="transaction type"
+//                   >
+//                     {typeObject.name}
+//                   </option>
+//                 );
+//               } else {
+//                 return (
+//                   <option
+//                     key={typeObject.id}
+//                     id="categoryId"
+//                     value={typeObject.id}
+//                   >
+//                     {typeObject.name}
+//                   </option>
+//                 );
+//               }
+//             })}
+//           </select>
+//           <button
+//             id="submit_transaction"
+//             className="button"
+//             onClick={updateTransaction}
+//           >
+//             Update Transaction
+//           </button>
+//         </fieldset>
+//       </form>
+//     </div>
+//   </>
+// );

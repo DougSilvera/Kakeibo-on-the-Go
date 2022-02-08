@@ -10,7 +10,29 @@
 
  
 }
+.transactionList-buttons{
+    display: flex;
+    justify-content: center;
+}
+.datagrid-table {
+    display: flex;
+    justify-content: center;
+    
+}
+.datagrid_object {
+    background-color: #fff;
+}
+.transaction_entry {
+    border: solid black;
+    margin: 2rem;
+}
 
+ul {
+    list-style-type: none;
+}
+.delete-button{
+    place-content: center;
+}
 
 .transaction_list {
     display: flex;
