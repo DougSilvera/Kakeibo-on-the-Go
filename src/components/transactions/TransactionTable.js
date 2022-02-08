@@ -5,15 +5,15 @@ import { humanDate } from "../Settings";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 const columns = [
-  { field: "date", headername: "Date", width: 100 },
+  { field: "date", headerName: "Date", width: 100 },
   {
     field: "description",
-    headername: "Description",
+    headerName: "Description",
     sortable: false,
     width: 300,
   },
-  { field: "amount", headername: "Amount", type: "currency", width: 100 },
-  { field: "type", headername: "Transaction Type", width: 100 },
+  { field: "amount", headerName: "Amount", type: "currency", width: 100 },
+  { field: "type", headerName: "Transaction Type", width: 100 },
 ];
 
 export default ({
@@ -58,7 +58,7 @@ export default ({
       {" "}
       <div className="transactionList-buttons">
         <Button
-          obj
+          
           sx={{ marginRight: 5 }}
           variant="contained"
           color="success"
@@ -69,8 +69,7 @@ export default ({
           Delete Selected
         </Button>
         <Button
-          obj
-          sx={{ marginRight: 5 }}
+          sx={{ marginLeft: 5 }}
           variant="contained"
           color="success"
           onClick={(event) => {
