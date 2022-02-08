@@ -10,10 +10,10 @@ const columns = [
     field: "description",
     headerName: "Description",
     sortable: false,
-    width: 300,
+    width: 700,
   },
   { field: "amount", headerName: "Amount", type: "currency", width: 100 },
-  { field: "type", headerName: "Transaction Type", width: 100 },
+  { field: "type", headerName: "Category", width: 100 },
 ];
 
 export default ({
@@ -80,7 +80,7 @@ export default ({
         </Button>
       </div>
       <div className="datagrid-table">
-        <div className="datagrid_object" style={{ height: 450, width: 700 }}>
+        <div className="datagrid_object" style={{ height: 425, width: 1100 }}>
           <DataGrid
             rows={rows}
             columns={columns}
