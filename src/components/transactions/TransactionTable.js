@@ -1,9 +1,10 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
-import { humanDate } from "../Settings";
+import { humanDate, toCurrency } from "../Settings";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
+
 const columns = [
   { field: "date", headerName: "Date", width: 100 },
   {
@@ -33,9 +34,7 @@ export default ({
     syncTransactions(renderTransactions + 1);
   };
 
-  const toCurrency = (number) => {
-    return `$${number.toFixed(2)}`;
-  };
+ 
   const editTransactionId = (event) => {
     if (selectedTransactions.length > 1 || selectedTransactions.length === 0) {
       return window.alert("Please select ONE transaction to edit");

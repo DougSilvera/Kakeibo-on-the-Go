@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JournalRepository from "../../repositories/JournalRepository";
 import TransactionRepository from "../../repositories/TransactionRepository";
-import { humanDate, humanDate2, simpleArraySum } from "../Settings";
+import { humanDate, humanDate2, simpleArraySum,toCurrency } from "../Settings";
 import { Box } from "@mui/material";
 import "./journals.css";
 import { DataGrid } from "@mui/x-data-grid";
-import backgroundImage from "./backgroundPaper.jpg"
+
 const columns = [
   { field: "date", headerName: "Date", width: 100 },
   {
@@ -42,9 +42,7 @@ export default () => {
       setTypes(data);
     });
   }, []);
-  const toCurrency = (number) => {
-    return `$${parseFloat(number).toFixed(2)}`;
-  };
+  
   const rows = journalTransactions.map((journalTransaction) => {
     return {
       id: journalTransaction.transaction.id,

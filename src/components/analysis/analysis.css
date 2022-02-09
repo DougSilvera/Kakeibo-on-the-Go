@@ -11,3 +11,21 @@
     
     
 }
+
+.analyze-boxes, .filter, .transaction-detail-category-header {
+    display: flex;
+    justify-content: center;
+}
+#start_date, #end_date {
+    margin: 5px;
+}
+.category-choices {
+    display: flex;
+   align-items: center;
+}
+.transaction-detail-category-totals {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    font-size: larger;
+}
