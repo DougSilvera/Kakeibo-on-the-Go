@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import JournalRepository from "../../repositories/JournalRepository";
-import {  humanDate2 } from "../Settings";
+import {  humanDate2, toCurrency } from "../Settings";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
@@ -34,9 +34,7 @@ export default () => {
   const killJournal = (id) => {
     JournalRepository.deleteJournal(id);
   };
-  const toCurrency = (number) => {
-    return `$${number.toFixed(2)}`;
-  };
+  
   const rows = journals.map((journal) => {
     return {
       id: journal.id,

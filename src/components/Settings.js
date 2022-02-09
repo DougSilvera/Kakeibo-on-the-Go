@@ -75,3 +75,6 @@ export const simpleArraySum = (ar) => {
   }
   return sum.toFixed(2);
 };
+ export const toCurrency = (number) => {
+  return `$${parseFloat(number).toFixed(2)}`;
+};
