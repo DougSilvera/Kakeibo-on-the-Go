@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
+
+
+
+.journal-detail, .journal-detail-boxes, .journal-detail-category-header, .datagrid-object-container {
+    display: flex;
+    justify-content: center;
+}
+.journal-detail-entry, .category-totals {
+    font-family: 'Quintessential', cursive;
+    font-size: larger;
+}
+.journal-detail-entry-line {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.journal-detail-category-totals {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    font-size: larger;
+}
+.journal-detail-entry {
+    overflow-y: scroll;
+    max-height: 27rem;
+}
+.journal-detail-entry-line {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}

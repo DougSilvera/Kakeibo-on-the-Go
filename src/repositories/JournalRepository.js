@@ -36,7 +36,11 @@ export default {
   async getJournalTransactionsbyId(journalId) {
     return await fetchIt(
       `${Settings.API}/journalTransactions?journalId=${journalId}&_expand=transaction&_expand=type`
-    );
+    ).then((data) =>
+    data.sort(function (x, y) {
+      return y.transaction.timestamp - x.transaction.timestamp;
+    })
+  );
   },
   async updateJournal(updatedJournal) {
     return await fetchIt(
