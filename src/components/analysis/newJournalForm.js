@@ -47,7 +47,7 @@ export default ({ transactions, startDate, endDate }) => {
               setJournal(copy);
             }}
           /></label>
-          <label>
+          <label className="journal-input-page-break">
             Did you spend more or less than what you planned on, why?
           </label>
           <textarea className="journal_text_input_box"
