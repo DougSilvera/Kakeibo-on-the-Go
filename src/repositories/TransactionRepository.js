@@ -35,22 +35,5 @@ export default {
       JSON.stringify(updatedTransaction)
     );
   },
-  async getFilteredTransactions(query, startDate, endDate) {
-    return await fetchIt(`${Settings.API}/transactions?${query}`)
-      .then((data) => {
-        data.filter((data) => data.timestamp >= startDate);
-      })
-      .then((data) => {
-        data.filter((data) => data.timestamp <= endDate);
-      });
-  },
-  async getDateFilteredTransactions(startDate, endDate) {
-    return await fetchIt(`${Settings.API}/transactions`)
-      .then((data) => {
-        data.filter((data) => data.timestamp >= startDate);
-      })
-      .then((data) => {
-        data.filter((data) => data.timestamp <= endDate);
-      });
-  },
+  
 };
