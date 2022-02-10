@@ -108,10 +108,15 @@ export default () => {
   const targetEndDate = (date) => {
     setEndDate(toTimestamp(date));
   };
-// const filterReset = (updateParam, event, ) => {
-//   event.preventDefault()
-// need to finish filter reset function, set typefilters to " " to uncheck filter boxes
-// }
+
+  const resetAllFilters = (event) => {
+  event.preventDefault()
+  resetFilters(filterReset + 1)
+  setTypeFilters("")
+  document.getElementById("start_date").value=""
+  document.getElementById("end_date").value=""
+  
+}
 
   return (
     <>
@@ -140,8 +145,8 @@ export default () => {
               sx={{ marginLeft: 5 }}
               variant="contained"
               color="success"
-              onClick={() => {
-                ;
+              onClick={(event) => {
+                resetAllFilters(event)
               }}
             >
               Clear Filters
