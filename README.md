@@ -10,7 +10,7 @@ Kakeibo is a century old japanese budget method built on the principles of loggi
 ## Functions
 
 ### Logging in User
-register user on using the register user form. current authentication protocol is not secure and is not passsword protected
+register new user with registration form. current authentication protocol is not secure and is not passsword protected
 
 existing users will log in by email
 
