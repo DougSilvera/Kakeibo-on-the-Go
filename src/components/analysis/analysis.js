@@ -54,7 +54,7 @@ export default () => {
     event.preventDefault();
     TransactionRepository.getUserTransactions()
       .then((data) => {
-        if (startDate.length > 0 || endDate.length > 0) {
+        if (startDate.length != "" && endDate.length != "") {
           return dateFilter(beginDate, endingDate, data);
         } else {
           return data;

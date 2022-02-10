@@ -29,3 +29,9 @@
     justify-content: left;
     flex-wrap: wrap;
 }
+
+.editJournal_text_input_box {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 5rem;
+}

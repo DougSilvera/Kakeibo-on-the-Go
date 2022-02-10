@@ -48,14 +48,14 @@ export default () => {
   });
   const editJournalId = (event) => {
     if (selectedJournals.length > 1 || selectedJournals.length === 0) {
-      return window.alert("Please select ONE transaction to edit");
+      return window.alert("Please select ONE journal to edit");
     } else {
       return history.push(`/journalList/editJournal/${selectedJournals[0]}`);
     }
   };
   const detailJournalId = (event) => {
     if (selectedJournals.length > 1 || selectedJournals.length === 0) {
-      return window.alert("Please select ONE transaction to edit");
+      return window.alert("Please select ONE journal to view");
     } else {
       return history.push(`/journalList/journalDetail/${selectedJournals[0]}`);
     }
