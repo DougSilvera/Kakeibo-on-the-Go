@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
+
 .analyze_transaction_list {
     display: flex;
     justify-content: left;
@@ -12,7 +14,7 @@
     
 }
 
-.analyze-boxes, .filter, .transaction-detail-category-header {
+.analyze-boxes, .filter, .transaction-detail-category-header, .buttonContainer {
     display: flex;
     justify-content: center;
 }
@@ -28,4 +30,37 @@
     justify-content: space-between;
     margin: 5px;
     font-size: larger;
+}
+.journal_form {
+    font-family: 'Quintessential', cursive;
+    font-size: larger;
+    font-weight: bold;
+}
+.journal_form_fields {
+    display: flex;
+    flex-direction: column;
+}
+.journal_number_input_box, .journal_text_input_box {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.journal_number_input_box{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.journal_text_input_box {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 7rem;
 }

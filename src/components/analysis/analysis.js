@@ -231,7 +231,7 @@ export default () => {
               );
             })}
           </div>
-          <div>
+          <div className="add-journal-entry">
             <NewJournalForm
               transactions={transactions}
               startDate={startDate}
