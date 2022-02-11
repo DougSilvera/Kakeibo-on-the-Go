@@ -13,8 +13,8 @@ export default ({ transactions, startDate, endDate }) => {
       userId: loggedInUser,
       startDate: startDate,
       endDate: endDate,
-      have: journal.have,
-      save: journal.save,
+      have: formNumber(journal.have),
+      save: formNumber(journal.save),
       spend: journal.spend,
       reflection: journal.reflection,
     };
@@ -22,6 +22,10 @@ export default ({ transactions, startDate, endDate }) => {
       history.push("/journalList");
     });
   };
+  const formNumber = (number) => {
+    return parseFloat(number).toFixed(2)
+   
+   }
   return (
     <div className="add_journal">
       
