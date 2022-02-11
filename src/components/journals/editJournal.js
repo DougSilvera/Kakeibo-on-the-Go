@@ -69,7 +69,10 @@ export default () => {
       history.push(`/journalList/journalDetail/${journalId}`);
     });
   };
+const formNumber = (number) => {
+ return parseFloat(number).toFixed(2)
 
+}
   return (
     <>
       <div className="journal-detail">
@@ -145,7 +148,7 @@ export default () => {
           <input className="journal_number_input_box"
             id="have_field"
             type="number"
-            value={parseFloat(form.have).toFixed(2)}
+            value={form.have}
             onChange={(event) => {
               let copy = { ...form };
               copy.have = parseFloat(event.target.value);
@@ -156,7 +159,8 @@ export default () => {
           <input className="journal_number_input_box"
             id="save_field"
             type="number"
-            value={parseFloat(form.save).toFixed(2)}
+            step="0.01"
+            value={form.save}
             onChange={(event) => {
               let copy = { ...form };
               copy.save = parseFloat(event.target.value);
